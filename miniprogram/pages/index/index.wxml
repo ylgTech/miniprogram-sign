@@ -1,0 +1,21 @@
+<view class='tu'>
+  <image src='../../images/logo.jpg'></image>
+</view>
+
+<text class='word'>签到前请先连接404Wifi并打开GPS，否则无法签到</text>
+
+<view class='tip'>
+  <view class='wifiName'>
+    <view>Wifi名称：</view>
+    <view>xgb404</view>
+  </view>
+
+  <view class='wifiPassword'>
+    <view>Wifi密码：</view>
+    <view>88830180</view>
+  </view>
+</view>
+
+
+
+<button class='signInButton' plain='true' size='mini' bindtap='signIn'>进入签到界面</button>

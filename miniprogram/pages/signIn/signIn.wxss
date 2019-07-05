@@ -1,0 +1,104 @@
+/* overflow为hidden只能显示一页 */
+page{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* .bg{
+  width:100%;
+  height:100%;
+  background: url('http://cdn7.okayapi.com/20181014225303_a61a3730c4ec302671955d5a8b8ea123.jpeg ');
+  background-size: cover;
+} */
+
+
+.centerName{
+  display: flex;
+  justify-content: center;
+  font-size: 60rpx;
+}
+
+.bindInfoTip{
+  display: flex;
+  justify-content: center;
+  margin-top: 40rpx;
+  font-size: 30rpx;
+  color: brown;
+}
+
+.dept{
+  display: flex;
+  justify-content: center;
+  margin-top: 50rpx;
+}
+
+.jiantou9{
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.userName{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50rpx;
+}
+
+.userName-input{
+  /* text-align: center; */
+  border-bottom: 1px solid #ccc;
+  width: 200rpx;
+}
+
+.bindUserInfo{
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+
+.but{
+  display: flex;
+  justify-content: center;
+  margin-top: 50rpx;
+}
+
+.circle{
+    width: 120px;
+    height: 120px;
+    border-radius: 500px;
+    /* margin-top: 25%; */
+    font-family: 华文楷体;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tip{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 30rpx;
+}
+
+.tip-time{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.record{
+  display: flex;
+  justify-content: center;
+  margin-top: 60rpx;
+  font-family: 隶书;
+  color: rgb(48, 154, 216);
+}
