@@ -1,4 +1,4 @@
-<view class='tu'>
+<!-- <view class='tu'>
   <image src='../../images/logo.jpg'></image>
 </view>
 
@@ -14,8 +14,10 @@
     <view>Wifi密码：</view>
     <view>88830180</view>
   </view>
+</view> -->
+<image src="../../images/bg.png" class="bgimg" bindlongtap=""></image>
+<view class="button" style="top:{{windowHeight*0.78}}px">
+  <button class='signInButton' bindtap="enrollIn">在线报班</button>
+  <button class='signInButton' bindtap='signIn' style="top:{{windowHeight*0.10}}px">进入签到界面</button>
 </view>
-
-
-
-<button class='signInButton' plain='true' size='mini' bindtap='signIn'>进入签到界面</button>
+<!-- <button class='signInButton' plain="true" size="mini" bindtap="manageIn">管理员入口</button> -->

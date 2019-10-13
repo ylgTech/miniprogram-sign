@@ -1,57 +1,57 @@
-
-
-
 <view class='userInfo'>
-  <text class='centerName'>云麓谷信息技术中心</text>
-  <view wx:if='{{!isBindInfo}}' class='inputInfo'>
-   <text class='bindInfoTip'>注意：首次登陆请先绑定信息，绑定后信息不可更改</text>
-    <view class='dept'>
-      <picker bindchange="deptChange" value="{{deptIndex}}" range="{{deptItems}}">
-        <text>部门：{{deptItems[deptIndex]}}</text>
-        <image src='../../images/jiantou9.png' class='jiantou9'></image>
-      </picker>
+  <view wx:if='{{!isBindInfo}}'>
+    <image src="../../images/bg2.png" class="bgimg"></image>
+    <!-- <text class='bindInfoTip'>注意：首次登陆请先绑定信息，绑定后信息不可更改</text> -->
+    <view class="picker" style="margin-top:{{windowHeight*0.3}}px;margin-left:{{windowWidth*0.41}}px">
+      <view>
+        <picker bindchange="centerChange" value="{{centerIndex}}" range="{{centerItems}}">
+          <text class="text">{{centerItems[centerIndex]}}</text>
+          <!-- <image src='../../images/jiantou9.png' class='jiantou9'></image> -->
+        </picker>
+      </view>
+      <view class='dept' style="top:{{windowHeight*0.105}}px">
+        <picker bindchange="deptChange" value="{{deptIndex}}" range="{{deptItems}}">
+          <text class="text">{{deptItems[deptIndex]}}</text>
+          <!-- <image src='../../images/jiantou9.png' class='jiantou9'></image> -->
+        </picker>
+      </view>
+      <view class='userName' style="top:{{windowHeight*0.215}}px">
+        <input class='userName-input' placeholder='{{inputMessage}}' placeholder-style="color:white;font-size:25rpx" bindinput='userNameInput' maxlength='5'></input>
+      </view>
     </view>
-
-    <view class='userName'>
-      <text>姓名：</text>
-      <input class='userName-input' placeholder='{{inputMessage}}' bindinput='userNameInput' maxlength='5'></input>
+    <view class="but">
+      <image src="../../images/bd.png" class='bindUserInfo' bindtap='bindUserInfo' style="top:{{windowHeight*0.62}}px"></image>
     </view>
-
   </view>
 
   <view wx:else>
-    <view class='dept'>
-        <text>部门：{{dept}}</text>
+    <image src="../../images/bg3.png" class="bgimg"></image>
+    <view style="margin-left:{{windowWidth*0.525}}px">
+    <view class='dept' style="top:{{windowHeight*0.328}}px">
+      <text class="text">{{dept}}</text>
+    </view>
+    <view class='userName' style="top:{{windowHeight*0.428}}px">
+      <text class="text">{{userName}}</text>
+    </view>
     </view>
 
-    <view class='userName'>
-      <text>姓名：{{userName}}</text>
+    <view class='but'>
+      <image src="{{butsrc}}" class='bindUserInfo' bindtap="{{isCanSignIn==true?'butDown':''}}" style="top:{{windowHeight*0.51}}px"></image>
     </view>
+
+    <view class='tip' style="top:{{windowHeight*0.74}}px">
+      <text class="text2">当前签到时间段：</text>
+      <view class='tip-time'>
+        <text class='tip-day text2' wx:if='{{isSignIn}}'>{{nowDay}}</text>
+        <text class='tip-class text2'>{{nowClass}}</text>
+      </view>
+    </view>
+
+    <view class="recordbox" style="top:{{windowHeight*0.8}}px">
+      <button class="record" bindtap="goToTable">查看本周值班签到表</button>
+      <button class="record" bindtap="goToOrder" style="top:{{windowHeight*0.11}}px">查看本月值班次数排行榜</button>
+    </view>
+
   </view>
-
 </view>
-
-<button wx:if='{{!isBindInfo}}' class='bindUserInfo' size='mini' bindtap='bindUserInfo'>绑定信息</button>
-
-<view class='but'>
-  <button type="default" class="circle" plain='true' bindtap='butDown' disabled='{{!isCanSignIn}}'>{{word}}</button>
-</view>
-
-<view class='tip'>
-  <text>当前签到时间段：</text>
-  <view class='tip-time'>
-    <text class='tip-day' wx:if='{{isSignIn}}'>{{nowDay}}</text>
-    <text class='tip-class'>{{nowClass}}</text>
-  </view>
-</view>
-
-<navigator class='record' url='../table/table'>
-  <text>点击查看本周值班签到表</text>
-</navigator>
-<navigator class='record' url='../order/order'>
-  <text>点击查看本月值班次数排行榜</text>
-</navigator>
-
-
-
 <!-- <view class='bg'></view> -->

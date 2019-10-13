@@ -3,27 +3,27 @@ Page({
 
   data: {
     item:[],
-    no:0
+    no:0,
+    windowHeight:440,
+    windowWidth:320
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var that=this;
-    // const db=wx.cloud.database()
-    // //按count值降序排序并打印结果
-    // db.collection('scheduleSum').orderBy('count','desc')
-    // .get({
-    //   success(res){
-    //     console.log('[数据库] [排序记录] 成功：',res.data)
-    //     that.setData({
-    //       //将返回数据数组传入data的空数组item中
-    //       item:that.data.item.concat(res.data)
-    //     })
-    //   }
-    // })
-    this.onQuery();
+    var that=this;
+    this.setData({
+      windowHeight:app.globalData.windowHeight,
+      windowWidth:app.globalData.windowWidth
+    })
+    if (app.globalData.center=='信息技术中心'){
+      that.onQuery()
+    }
+    if (app.globalData.center=='易班推广发展中心'){
+      that.onQuery2()
+    }
+    console.log(that.data.item)
   },
 
 
@@ -40,57 +40,53 @@ Page({
   onShow: function () {
     
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  },
-
+  
  onQuery:function(){
    var that=this;
    wx.cloud.callFunction({
-     name:'order',
+     name:'orderXinxi',
      data:{},
      success:function(res){
        wx.hideLoading();
        console.log('[数据库] [排序记录] 成功：', res)
+       //将返回数据数组传入data的空数组tempitem中
+       var tempitem=that.data.item.concat(res.result.data)
+       for(var i=0;i<tempitem.length;i++){
+         if(tempitem[i].absent==1){
+           tempitem.splice(i,1)
+           i=i-1
+         }
+       }
        that.setData({
-        //将返回数据数组传入data的空数组item中
-        item:that.data.item.concat(res.result.data)
+        item:tempitem
        })
      },
      fail:console.error
    })
- } 
+ } ,
+
+  onQuery2: function () {
+    var that = this;
+    wx.cloud.callFunction({
+      name: 'orderYiban',
+      data: {},
+      success: function (res) {
+        wx.hideLoading();
+        console.log('[数据库] [排序记录] 成功：', res)
+        //将返回数据数组传入data的空数组tempitem中
+        var tempitem = that.data.item.concat(res.result.data)
+        for (var i = 0; i < tempitem.length; i++) {
+          if (tempitem[i].absent == 1) {
+            tempitem.splice(i, 1)
+            i = i - 1
+          }
+        }
+        that.setData({
+          item: tempitem
+        })
+      },
+      fail: console.error
+    })
+  } 
 
 })

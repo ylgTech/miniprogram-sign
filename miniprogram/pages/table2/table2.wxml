@@ -1,4 +1,4 @@
-<text class='tableName'>信息技术中心值班签到表</text>
+<text class='tableName'>易班推广发展中心值班签到表</text>
 
 <view class='weekSelectBut'>
   <button size='mini' class='but' bindtap='lastWeek'>上一周</button>

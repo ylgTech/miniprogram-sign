@@ -1,19 +1,10 @@
-/* overflow为hidden只能显示一页 */
-page{
-  height: 100%;
+page {
   width: 100%;
+  height: 100%;
   overflow: hidden;
-  background: #f6f6f6;
 }
 
-/* .bg{
-  width:100%;
-  height:100%;
-  background: url('http://cdn7.okayapi.com/20181014225303_a61a3730c4ec302671955d5a8b8ea123.jpeg ');
-  background-size: cover;
-} */
-
-.bgimg{
+.bgimg {
   display: flex;
   position: fixed;
   box-sizing: border-box;
@@ -29,27 +20,9 @@ page{
   margin-left: 340rpx;
 }
 
-.bindInfoTip{
-  display: flex;
-  justify-content: center;
-  font-size: 30rpx;
-  color: brown;
-}
-
 .dept{
   display: inline-block;
   position: absolute;
-}
-
-.jiantou9{
-  height: 40rpx;
-  width: 40rpx;
-}
-
-.text{
-  font-size: 25rpx;
-  /* font-family: 字魂59号-创粗黑; */
-  color: #fff;
 }
 
 .userName{
@@ -77,47 +50,59 @@ page{
     position: absolute;
 }
 
-.text2{
-  font-size: 22rpx;
+.text {
+  font-size: 25rpx;
   /* font-family: 字魂59号-创粗黑; */
-  color: #000;
+  color: #fff;
 }
 
-.tip{
-  width: 100%;
+.pickerbox {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-direction: row;
+  position: absolute;
+  width: 100%;
+}
+
+.timePeriod {
+  display: inline-block;
   position: absolute;
 }
 
-.tip-time{
+.but{
+  width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
-.recordbox{
+.clickEnroll {
+  width: 190rpx;
+  height: 190rpx;
+  position: absolute;
+}
+
+.buttonbox {
   display: flex;
   width: 100%;
   justify-content: center;
   position: absolute;
 }
 
-.record{
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  width: 370rpx;
+  width: 350rpx;
   height: 63rpx;
   color: #fff;
-  font-size: 26.2rpx;
+  font-size: 25rpx;
   /* font-family: 字魂59号-创粗黑; */
   border-radius: 0;
   background-color: #57a5c8;
-  box-shadow:0rpx 10rpx 10rpx #83b2bf;
+  box-shadow: 0rpx 10rpx 10rpx #83b2bf;
 }
-button::after{
-border: none;
+
+button::after {
+  border: none;
 }

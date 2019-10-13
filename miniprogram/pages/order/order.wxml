@@ -1,13 +1,9 @@
-
-<text class='tableName'>云麓谷信息技术中心</text>
-<text class='tableName'>值班次数排行榜</text>
-<view class='tableHead'>
-  <text>名次</text>
-  <text class='name'>姓名</text>
-  <text class='counts'>值班次数</text>
+<image src="../../images/bg6.png" class="bgimg"></image>
+<view class="title" style="padding-top:{{windowHeight*0.1}}px">
+  <image src="../../images/title.png"></image>
 </view>
-<view class='tableBox' wx:for="{{item}}">
-  <view class='no'>{{index+1}}</view>
-  <view class='member'>{{item.member}}</view>
-  <view class='count'>{{item.count}}</view>
-</view>
+  <view class='tableBox' wx:for="{{item}}">
+    <view class='no text'>{{index+1}}</view>
+    <view class='member text'>{{item.member}}</view>
+    <view class='count text'>{{item.count}}</view>
+  </view>

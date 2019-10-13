@@ -8,7 +8,26 @@ Page({
   data: {
     sch_listData: [],
     dateArray: [],
-    tablePageId:''
+    tablePageId: ''
+  },
+
+  // 查询函数
+  onQuery: function () {
+    var that = this;
+      wx.cloud.callFunction({
+        name: 'queryYiban',
+        data: {
+          queryArray: queryArray
+        },
+        complete: function (res) {
+          wx.hideLoading();
+          console.log(res)
+          var sch_listData = dealData(res.result.data);
+          that.setData({
+            sch_listData: sch_listData
+          })
+        }
+      })
   },
 
   onLoad: function (options) {
@@ -33,42 +52,8 @@ Page({
     }, 2000)
   },
 
-  // 查询函数
-  onQuery: function() {
-    // var that = this;
-    // const db = wx.cloud.database()
-    // const _ = db.command
-    // db.collection('scheduleList').where({
-    //     date: _.in(queryArray)
-    //   })
-    //   .get({
-    //     success: function(res) {
-    //       wx.hideLoading();
-    //       console.log(res.data)
-    //       var sch_listData = dealData(res.data);
-    //       that.setData({
-    //         sch_listData: sch_listData
-    //       })
-    //     }
-    //   })
-    var that=this;
-      wx.cloud.callFunction({
-        name:'queryXinxi',
-        data:{
-          queryArray: queryArray
-        },
-        complete:function(res){
-          wx.hideLoading();
-          console.log(res)
-          var sch_listData=dealData(res.result.data);
-          that.setData({
-            sch_listData:sch_listData
-          })
-        }
-      })
-  },
 
-  clickDoctor: function(e) {
+  clickDoctor: function (e) {
     var $dict = e.currentTarget.dataset;
     console.log(e)
 
@@ -102,7 +87,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: str,
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
         }
@@ -111,7 +96,7 @@ Page({
   },
 
   //点击‘上一周’按钮
-  lastWeek: function() {
+  lastWeek: function () {
     lastNextNum--;
     var daysArray = getSevenDays();
     this.onQuery();
@@ -126,7 +111,7 @@ Page({
   },
 
   //点击‘下一周’按钮
-  nextWeek: function() {
+  nextWeek: function () {
     lastNextNum++;
     var daysArray = getSevenDays();
     this.onQuery();
@@ -144,7 +129,7 @@ Page({
 
 
 
-var getSevenDays = function() {
+var getSevenDays = function () {
   var daysArray = [];
   var dayDict = {};
   var weekStr = '';
@@ -152,12 +137,12 @@ var getSevenDays = function() {
   var that = this;
 
   console.log(new Date().getDay());
-  if (new Date().getDay() == 0){
+  if (new Date().getDay() == 0) {
     var k = -6;
-  }else{
+  } else {
     var k = 1 - new Date().getDay();
   }
-  
+
 
   queryArray = [];
   for (var i = k; i < k + 7; i++) {
@@ -205,14 +190,14 @@ var getSevenDays = function() {
   return daysArray;
 }
 
-var getWeekByDay = function(dayValue) {
+var getWeekByDay = function (dayValue) {
   var day = new Date(Date.parse(dayValue.replace(/-/g, '/'))); //将日期值格式化  
   var today = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六"); //创建星期数组  
   return today[day.getDay()]; //返一个星期中的某一天，其中0为星期日  
 }
 
 
-var dealData = function(scheduleInfoList) {
+var dealData = function (scheduleInfoList) {
   var tag = weeksArray[0].weekNum;
   console.log('tag:' + tag);
   var ar = [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7];
@@ -338,55 +323,55 @@ var dealData = function(scheduleInfoList) {
   }
 
   var sch_listData = [{
-      "time_title": "8:00-9:40",
-      "Mon_text": A_Mon_text_ar,
-      "Tues_text": A_Tues_text_ar,
-      "Wed_text": A_Wed_text_ar,
-      "Thur_text": A_Thur_text_ar,
-      "Fri_text": A_Fri_text_ar,
-      "Sat_text": A_Sat_text_ar,
-      "Sun_text": A_Sun_text_ar
-    },
-    {
-      "time_title": "10:00-11:40",
-      "Mon_text": B_Mon_text_ar,
-      "Tues_text": B_Tues_text_ar,
-      "Wed_text": B_Wed_text_ar,
-      "Thur_text": B_Thur_text_ar,
-      "Fri_text": B_Fri_text_ar,
-      "Sat_text": B_Sat_text_ar,
-      "Sun_text": B_Sun_text_ar
-    },
-    {
-      "time_title": "14:00-15:40",
-      "Mon_text": C_Mon_text_ar,
-      "Tues_text": C_Tues_text_ar,
-      "Wed_text": C_Wed_text_ar,
-      "Thur_text": C_Thur_text_ar,
-      "Fri_text": C_Fri_text_ar,
-      "Sat_text": C_Sat_text_ar,
-      "Sun_text": C_Sun_text_ar
-    },
-    {
-      "time_title": "16:00-17:40",
-      "Mon_text": D_Mon_text_ar,
-      "Tues_text": D_Tues_text_ar,
-      "Wed_text": D_Wed_text_ar,
-      "Thur_text": D_Thur_text_ar,
-      "Fri_text": D_Fri_text_ar,
-      "Sat_text": D_Sat_text_ar,
-      "Sun_text": D_Sun_text_ar
-    },
-    {
-      "time_title": "19:00-20:40",
-      "Mon_text": E_Mon_text_ar,
-      "Tues_text": E_Tues_text_ar,
-      "Wed_text": E_Wed_text_ar,
-      "Thur_text": E_Thur_text_ar,
-      "Fri_text": E_Fri_text_ar,
-      "Sat_text": E_Sat_text_ar,
-      "Sun_text": E_Sun_text_ar
-    }
+    "time_title": "8:00-10:00",
+    "Mon_text": A_Mon_text_ar,
+    "Tues_text": A_Tues_text_ar,
+    "Wed_text": A_Wed_text_ar,
+    "Thur_text": A_Thur_text_ar,
+    "Fri_text": A_Fri_text_ar,
+    "Sat_text": A_Sat_text_ar,
+    "Sun_text": A_Sun_text_ar
+  },
+  {
+    "time_title": "10:00-12:00",
+    "Mon_text": B_Mon_text_ar,
+    "Tues_text": B_Tues_text_ar,
+    "Wed_text": B_Wed_text_ar,
+    "Thur_text": B_Thur_text_ar,
+    "Fri_text": B_Fri_text_ar,
+    "Sat_text": B_Sat_text_ar,
+    "Sun_text": B_Sun_text_ar
+  },
+  {
+    "time_title": "14:00-16:00",
+    "Mon_text": C_Mon_text_ar,
+    "Tues_text": C_Tues_text_ar,
+    "Wed_text": C_Wed_text_ar,
+    "Thur_text": C_Thur_text_ar,
+    "Fri_text": C_Fri_text_ar,
+    "Sat_text": C_Sat_text_ar,
+    "Sun_text": C_Sun_text_ar
+  },
+  {
+    "time_title": "16:00-18:00",
+    "Mon_text": D_Mon_text_ar,
+    "Tues_text": D_Tues_text_ar,
+    "Wed_text": D_Wed_text_ar,
+    "Thur_text": D_Thur_text_ar,
+    "Fri_text": D_Fri_text_ar,
+    "Sat_text": D_Sat_text_ar,
+    "Sun_text": D_Sun_text_ar
+  },
+  {
+    "time_title": "18:30-21:00",
+    "Mon_text": E_Mon_text_ar,
+    "Tues_text": E_Tues_text_ar,
+    "Wed_text": E_Wed_text_ar,
+    "Thur_text": E_Thur_text_ar,
+    "Fri_text": E_Fri_text_ar,
+    "Sat_text": E_Sat_text_ar,
+    "Sun_text": E_Sun_text_ar
+  }
   ]
 
   return sch_listData;

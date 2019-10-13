@@ -1,0 +1,53 @@
+<view wx:if='{{!isBindInfo}}' class='inputInfo'>
+  <image src="../../images/bg2.png" class="bgimg"></image>
+  <!-- <text class='bindInfoTip'>注意：首次登陆请先绑定信息，绑定后信息不可更改</text> -->
+  <view class="picker" style="margin-top:{{windowHeight*0.3}}px;margin-left:{{windowWidth*0.41}}px">
+    <view>
+      <picker bindchange="centerChange" value="{{centerIndex}}" range="{{centerItems}}">
+        <text class="text">{{centerItems[centerIndex]}}</text>
+        <!-- <image src='../../images/jiantou9.png' class='jiantou9'></image> -->
+      </picker>
+    </view>
+    <view class='dept' style="top:{{windowHeight*0.105}}px">
+      <picker bindchange="deptChange" value="{{deptIndex}}" range="{{deptItems}}">
+        <text class="text">{{deptItems[deptIndex]}}</text>
+        <!-- <image src='../../images/jiantou9.png' class='jiantou9'></image> -->
+      </picker>
+    </view>
+    <view class='userName' style="top:{{windowHeight*0.215}}px">
+      <input class='userName-input' placeholder='{{inputMessage}}' placeholder-style="color:white;font-size:25rpx" bindinput='userNameInput' maxlength='5'></input>
+    </view>
+  </view>
+  <view class="but">
+    <image src="../../images/bd.png" class='bindUserInfo' bindtap='bindUserInfo' style="top:{{windowHeight*0.62}}px"></image>
+  </view>
+</view>
+
+<view wx:else>
+  <image src="../../images/bg5.png" class="bgimg"></image>
+  <view class="pickerbox" style="margin-top:{{windowHeight*0.218}}px;margin-left:{{windowWidth*0.49}}px">
+    <view>
+      <picker bindchange="dayOfWeekChange" value="{{dayOfWeekIndex}}" range="{{dayOfWeekArray}}">
+        <text class="text">{{dayOfWeekArray[dayOfWeekIndex]}}</text>
+      </picker>
+    </view>
+    <view wx:if='{{isXinxi}}' class="timePeriod" style="top:{{windowHeight*0.121}}px">
+      <picker bindchange="timePeriodChange" value="{{timePeriodIndex}}" range="{{timePeriodArray1}}">
+        <text class="text">{{timePeriodArray1[timePeriodIndex]}}</text>
+      </picker>
+    </view>
+    <view wx:else class="timePeriod" style="top:{{windowHeight*0.123}}px">
+      <picker bindchange="timePeriodChange" value="{{timePeriodIndex}}" range="{{timePeriodArray2}}">
+        <text class="text">{{timePeriodArray2[timePeriodIndex]}}</text>
+      </picker>
+    </view>
+  </view>
+
+  <view class="but">
+    <image src="../../images/bb.png" class='clickEnroll' bindtap='onEnroll' style="top:{{windowHeight*0.46}}px"></image>
+  </view>
+
+  <view class="buttonbox" style="top:{{windowHeight*0.72}}px">
+    <button class="button" bindtap="toTable">查看当前值班报名表</button>
+  </view>
+</view>

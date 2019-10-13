@@ -1,18 +1,22 @@
 {
   "cloud": true,
   "pages": [
-    
-    "pages/signIn/signIn",
     "pages/index/index",
+    "pages/enroll/enroll",
+    "pages/order/order",
+    "pages/signIn/signIn",
     "pages/table/table",
-    "pages/order/order"
+    "pages/table2/table2",
+    
+    "pages/manageIn/manageIn"
+    
   ],
   "window": {
     "backgroundColor": "#000",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "云麓谷值班签到",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
 }
